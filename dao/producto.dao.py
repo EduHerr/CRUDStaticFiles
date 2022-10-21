@@ -63,19 +63,44 @@ class DAOProducto:
             if Producto['id'] == _id:
                 return Producto
     
-    def update(data):
+    def update():
         route = '../datasource/productos.json'
         _productos = Documento.read(route)
+        Product = {}
 
         ##
-        _id = data['id']
+        # _id = data['id']
 
         ##Traemos la data del producto en especifico
-        for Producto in _productos:
+        for idx, Producto in enumerate(_productos):
             ##Buscar el objeto
-            if Producto['id'] == _id:
-                return Producto
+            if Producto['id'] == "6ce38aec-68ae-4c89-86f1-693434ca1fab":
+                ##Update properties
+                # if data['sku'] != None:
+                #     Producto['sku'] = data['sku']
+                
+                # if data['nombre'] != None:
+                #     Producto['nombre'] = data['nombre']
+                
+                # if data['descripcion'] != None:
+                #     Producto['descripcion'] = data['descripcion']
+                
+                # if data['precio'] != None:
+                #     Producto['precio'] = data['precio']
+                
+                # if data['stock'] != None:
+                #     Producto['stock'] = data['stock']
+
+                Producto['nombre'] = 'LH420'
+
+                ##Modificar
+                _productos[idx] = Producto
+        
+        ##Sobre-escribir la data en static_file
+        Documento.write(route, _productos, True)
+            
+        
 
 
-DAOProducto.drop()
+DAOProducto.update()
         
